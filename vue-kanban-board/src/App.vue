@@ -6,14 +6,35 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import draggable from 'vuedraggable';
 
 export default {
-  name: 'App',
+  name: 'kanban-board',
   components: {
-    HelloWorld
+    draggable
+  },
+  data() {
+    return {
+      newTask: '',
+      arrBackLog: [
+        { name: 'Sign up page'},
+        { name: 'Test dashboard'},
+        { name: 'Styling'}
+      ],
+      arrInProgress: [],
+      arrTested: [],
+      arrDone: []
+    };
+  },
+  methods: {
+    add: function() {
+      if (this.newTask) {
+        this.arrBackLog.push({ name: this.newTask });
+        this.newTask = '';
+      }
+    }
   }
-}
+};
 </script>
 
 <style>
